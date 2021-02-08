@@ -28,4 +28,6 @@ void read_puzzle(puzzle_t*, FILE*);
 
 void read_words(puzzle_t*, FILE*);
 
+int read_number(FILE*);
+
 #endif  // __PUZZLE_H__

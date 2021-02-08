@@ -26,15 +26,12 @@ void read_matrix(puzzle_t* puzzle, FILE* fd) {
     
     for (int row= 0; row < puzzle->matrix_size; ++row) {
         fgets(buffer, MATRIX_SIZE * 3, fd);
-        // printf("%s\n", buffer);
         for (int col = 0; col < puzzle->matrix_size; ++col) {
            sscanf(&buffer[col*2], "%c", &puzzle->matrix[row][col]);
-        //    fscanf(fd, "%c", &puzzle->matrix[row][col]);
            if (puzzle->matrix[row][col] == ' ') {
                puzzle->matrix[row][col] = '$';
            }
         }
-        // fscanf(fd, "%[^\n]", buffer);
     } 
 }
 

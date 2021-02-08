@@ -3,9 +3,9 @@
 #include <string.h>
 #include "puzzle.h" 
 
-void read_problem(puzzle_t* puzzle) {
-    int num_tests = 0; 
-    FILE *fd = fopen("sample.txt", "r");
+int main() {
+    int num_puzzles = 0; 
+    FILE *fd = fopen("./inputs/input_problem_1.txt", "r");
 
     if (fd == NULL)
     {
@@ -13,27 +13,26 @@ void read_problem(puzzle_t* puzzle) {
         exit(0);
     }
 
+    num_puzzles = read_number(fd);
 
-    read_puzzle(puzzle, fd);
+    for (int i = 0; i < num_puzzles; i++) {
+        puzzle_t puzzle;
+        init_puzzle(&puzzle);
+        read_puzzle(&puzzle, fd);
+
+        // for (int row= 0; row < puzzle.matrix_size; ++row) {
+        //     for (int col = 0; col < puzzle.matrix_size; ++col) {
+        //         printf("%c ", puzzle.matrix[row][col]);
+        //     }
+        //     printf("\n");
+        // } 
+    
+        dump_puzzle(&puzzle);
+        rm_puzzle(&puzzle);
+    }
+
 
     fclose(fd);
-}
-
-int main() {
-    puzzle_t puzzle;
-    init_puzzle(&puzzle);
-    read_problem(&puzzle);
-    // for (int row= 0; row < puzzle.matrix_size; ++row) {
-    //     for (int col = 0; col < puzzle.matrix_size; ++col) {
-    //         if (puzzle.matrix[row][col] == 'A') {
-    //             printf("%c ", puzzle.matrix[row][col]);
-    //         }
-    //     }
-    //     printf("\n");
-    // } 
- 
-    dump_puzzle(&puzzle);
-    rm_puzzle(&puzzle);
     return 0;
 }
 
